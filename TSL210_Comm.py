@@ -20,14 +20,19 @@ input=1
 while 1 :
     # get keyboard input
     input = raw_input(">> ")
-        # Python 3 users
-        # input = input(">> ")
+
+    #If 'exit' is typed by the user, then it ends the connection and closes the program
     if input == 'exit':
         ser.close()
         exit()
     else:
-        # send the character to the device
-        # (note that I happend a \r\n carriage return and line feed to the characters - this is requested by my device)
+        # Send the character to the device
+        # Note that '\r\n' is appended to the end of the write statement
+        # This is because the delimiter setting on the laser is currently CR/LF
+        # This requires that '\r\n' be appended to the end of every write statement that is sent to the laser to be
+        # interpreted correctly by the laser
+        # Delimiter settings can be changed to CR or LF or CR/LF. CR - '\r' LF - '\n' CR/LF - '\r\n'
+        # How to change this setting can be found in the User Manual under section 9-2
         ser.write(input + '\r\n')
         out = ''
         # let's wait one second before reading output (let's give device time to answer)
@@ -39,3 +44,5 @@ while 1 :
             print ">>" + out
         else:
             print "No Output"
+
+            
