@@ -1,7 +1,7 @@
 # Santec_TSL210
-Python Script for digitally controlling the Santec_TSL210 Laser using pyserial via the RS232-C connection written for Python 2.7.4
+Python Script for digitally controlling the Santec_TSL210 Laser using pyserial via the RS232-C connection written for Python 3 (Python 2.7.4 version also included)
 
-PySerial must be installed in order for this to work.
+pyserial must be installed in order for this to work.
 
 The serial commands are found in the manual under section 10-8.
 
