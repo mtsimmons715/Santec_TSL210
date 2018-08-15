@@ -42,12 +42,32 @@ def LaserOFF():
 
 
 def AdjustWavelength(value):
-    print("Hello")
+    mystring = "WA" + value + '\r\n'
+    ser.write(mystring.encode('ascii'))
+    out = ''
+    time.sleep(1)
+    while ser.inWaiting() > 0:
+        out += ser.read(1).decode('ascii')
+
+    if out != '':
+        print (">>" + out)
+    else:
+        print ("No Output")
 
 
 
 def AdjustPower(value):
-    print("Hi")
+    mystring = "LP" + value + '\r\n'
+    ser.write(mystring.encode('ascii'))
+    out = ''
+    time.sleep(1)
+    while ser.inWaiting() > 0:
+        out += ser.read(1).decode('ascii')
+
+    if out != '':
+        print (">>" + out)
+    else:
+        print ("No Output")
 
 
 
@@ -57,4 +77,5 @@ def SweepWavelength():
 
 
 def Exit():
+    ser.close()
     exit()
