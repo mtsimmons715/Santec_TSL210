@@ -73,7 +73,18 @@ def AdjustPower(value):
 
 def SweepWavelength():
     #Still figuring this one out
-    print("Hello")
+    wavelength = 1530.00
+    mystring = "WA" + str(wavelength) + '\r\n'
+    while wavelength < 1580.00:
+        ser.write(mystring.encode('ascii'))
+        wavelength  = wavelength + .01
+        mystring = "WA" + str(wavelength) + '\r\n'
+    wavelength = 1580.00
+    mystring = "WA" + str(wavelength) + '\r\n'
+    while wavelength > 1530.00:
+        ser.write(mystring.encode('ascii'))
+        wavelength  = wavelength - .01
+        mystring = "WA" + str(wavelength) + '\r\n'
 
 
 

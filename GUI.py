@@ -26,7 +26,7 @@ class Window(Frame):
         Exit = Button(self, text = "Exit", command = gf.Exit)
         Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: gf.AdjustWavelength(WE.get()))
         Power = Button(self, text = "Adjust Power (mW)", command = lambda: gf.AdjustPower(PE.get()))
-        Sweep = Button(self, text = "Sweep Wavelength", command = gf.Exit)
+        Sweep = Button(self, text = "Sweep Wavelength", command = gf.SweepWavelength)
 
         #Creates 'Entries' where inputs can be added and interpreted in the form of strings
         #For now we only care to adjust the Power and Wavelength so that is all I made
