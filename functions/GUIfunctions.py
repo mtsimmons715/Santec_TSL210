@@ -83,19 +83,20 @@ def AdjustPower(value):
 
 
 
-def SweepWavelength(begin, end):
+def SweepWavelength(begin, end, size):
     #This function sweeps the wavelenth from a beginning value to an end value and then back to the beginning value
     #The step size in wavelength is .01nm but digitally it can be controlled down to .001nm
     #It takes whatever the value the wavelenth was and drops it to the value of 'begin'
     start = float(begin)
     finish = float(end)
+    stepsize = float(size)
     #wavelength = 1530.00
     mystring = "WA" + str(start) + '\r\n'
 
     #This increases the wavelength by .01 nm until it reaches the value of 'end'
     while start < float(end):
         ser.write(mystring.encode('ascii'))
-        start  = start + .01 #This is the step size
+        start  = start + stepsize #This is the step size
         mystring = "WA" + str(start) + '\r\n'
 
     #This then sweeps the wavlength back down to 1530nm by a .01 nm step size as well
@@ -103,7 +104,7 @@ def SweepWavelength(begin, end):
     mystring = "WA" + str(finish) + '\r\n'
     while finish > float(begin):
         ser.write(mystring.encode('ascii'))
-        finish  = finish - .01 #This is the step size
+        finish  = finish - stepsize #This is the step size
         mystring = "WA" + str(finish) + '\r\n'
 
 
