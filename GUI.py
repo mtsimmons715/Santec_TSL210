@@ -6,7 +6,7 @@
 
 
 from tkinter import *
-from functions import GUIfunctions as gf
+from functions import Laserfunctions as lf
 
 
 #The GUI Class
@@ -23,12 +23,12 @@ class Window(Frame):
         self.pack(fill = BOTH, expand=1)
 
         #Creates the various buttons of the GUI
-        LaserON = Button(self, text = "Laser ON", command = gf.LaserON)
-        LaserOFF = Button(self, text = "Laser OFF", command = gf.LaserOFF)
-        Exit = Button(self, text = "Exit", command = gf.Exit)
-        Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: [gf.AdjustWavelength(WE.get()), WE.delete(0,END)])
-        Power = Button(self, text = "Adjust Power (mW)", command = lambda: [gf.AdjustPower(PE.get()), PE.delete(0,END)])
-        Sweep = Button(self, text = "Sweep Wavelength", command = lambda: [gf.SweepWavelength(Begin.get(), End.get(), Size.get()), Begin.delete(0,END), End.delete(0,END), Size.delete(0,END)])
+        LaserON = Button(self, text = "Laser ON", command = lf.LaserON)
+        LaserOFF = Button(self, text = "Laser OFF", command = lf.LaserOFF)
+        Exit = Button(self, text = "Exit", command = lf.Exit)
+        Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: [lf.AdjustWavelength(WE.get()), WE.delete(0,END)])
+        Power = Button(self, text = "Adjust Power (mW)", command = lambda: [lf.AdjustPower(PE.get()), PE.delete(0,END)])
+        Sweep = Button(self, text = "Sweep Wavelength", command = lambda: [lf.SweepWavelength(Begin.get(), End.get(), Size.get()), Begin.delete(0,END), End.delete(0,END), Size.delete(0,END)])
 
         #Creates 'Entries' where inputs can be added and interpreted in the form of strings
         WavelengthEntry = StringVar()
