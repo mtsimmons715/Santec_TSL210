@@ -24,8 +24,8 @@ class Window(Frame):
         LaserON = Button(self, text = "Laser ON", command = gf.LaserON)
         LaserOFF = Button(self, text = "Laser OFF", command = gf.LaserOFF)
         Exit = Button(self, text = "Exit", command = gf.Exit)
-        Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: gf.AdjustWavelength(WE.get()))
-        Power = Button(self, text = "Adjust Power (mW)", command = lambda: gf.AdjustPower(PE.get()))
+        Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: [gf.AdjustWavelength(WE.get()), WE.delete(0,END)])
+        Power = Button(self, text = "Adjust Power (mW)", command = lambda: [gf.AdjustPower(PE.get()), PE.delete(0,END)])
         Sweep = Button(self, text = "Sweep Wavelength", command = gf.SweepWavelength)
 
         #Creates 'Entries' where inputs can be added and interpreted in the form of strings
@@ -37,16 +37,18 @@ class Window(Frame):
 
         #This positions all of the buttons and entries on the GUI
         LaserON.place(x=0,y=0)
-        LaserOFF.place(x=0,y=25)
-        Exit.place(x=0,y=50)
-        Wavelength.place(x=30,y=0)
-        Power.place(x=30,y=25)
-        WE.place(x=60,y=0)
-        PE.place(x=60,y=25)
-        Sweep.place(x=30,y=50)
+        LaserOFF.place(x=0,y=30)
+        Exit.place(x=0,y=60)
+        Wavelength.place(x=70,y=0)
+        Power.place(x=70,y=30)
+        WE.place(x=190,y=0)
+        PE.place(x=190,y=30)
+        Sweep.place(x=40,y=60)
 
 
+#creates the GUI
 root = Tk()
+#sets the inital window size of the GUI
 root.geometry("400x300")
 
 app = Window(root)
