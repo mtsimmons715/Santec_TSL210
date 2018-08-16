@@ -1,3 +1,10 @@
+#File: TSL210_CommPy3.py
+#Author: Matthew Simmons
+#Last Modified: August 15, 2018
+#Purpose: Continuously running loop that lets the user input any commands from the manual to the laser
+#         rather than a limited few if using the GUI 
+
+
 import time
 import serial
 

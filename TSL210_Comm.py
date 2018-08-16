@@ -1,3 +1,9 @@
+#File: TSL210_CommPy3.py
+#Author: Matthew Simmons
+#Last Modified: August 15, 2018
+#Purpose: Python 2.7 compatible version of the TSL210_CommPy3.py
+
+
 import time
 import serial
 
@@ -44,5 +50,3 @@ while 1 :
             print ">>" + out
         else:
             print "No Output"
-
-            

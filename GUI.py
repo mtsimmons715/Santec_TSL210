@@ -2,6 +2,8 @@
 #Author: Matthew Simmons
 #Last Modified: August 15, 2018
 #Purpose: Provide a graphical interface to easily control the Santec TSL210 Laser
+#Note: Only works with Python 3
+
 
 from tkinter import *
 from functions import GUIfunctions as gf
