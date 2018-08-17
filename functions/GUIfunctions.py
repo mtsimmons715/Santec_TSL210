@@ -10,7 +10,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 dll_location = dir_path + "\\dll"
 os.environ['PATH'] = dll_location + os.pathsep + os.environ['PATH']
 #import piezo controller dll
-piezoDll = ct.CDLL("Thorlabs.MotionControl.Benchtop.Piezo.dll")
+#piezoDll = ct.CDLL("Thorlabs.MotionControl.Benchtop.Piezo.dll")
 hundredPercent = 32767
 channel1 = ct.c_short(1)
 channel2 = ct.c_short(2)

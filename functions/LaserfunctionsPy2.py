@@ -1,4 +1,4 @@
-from tkinter import *
+
 import time
 import serial
 from . import daq
@@ -13,76 +13,24 @@ ser = serial.Serial(
 )
 ser.isOpen()
 
+#Turns the laser ON by sending the 'LO' command to the device
 def LaserON():
-    mystring = "LO" + '\r\n'
-    ser.write(mystring.encode('ascii'))
-
-    #All of the rest of the code just gets the response back from the laser and prints it
-    #to the terminal to make sure that the command was received correctly
-    out = ''
-    time.sleep(1)
-    while ser.inWaiting() > 0:
-        out += ser.read(1).decode('ascii')
-
-    if out != '':
-        print (">>" + out)
-    else:
-        print ("No Output")
+    ser.write("LO" + '\r\n')
 
 
-
+#Turns the laser OFF by sending the 'LF' command to the device
 def LaserOFF():
-    mystring = "LF" + '\r\n'
-    ser.write(mystring.encode('ascii'))
-
-    #All of the rest of the code just gets the response back from the laser and prints it
-    #to the terminal to make sure that the command was received correctly
-    out = ''
-    time.sleep(1)
-    while ser.inWaiting() > 0:
-        out += ser.read(1).decode('ascii')
-
-    if out != '':
-        print (">>" + out)
-    else:
-        print ("No Output")
+    ser.write("LF" + '\r\n')
 
 
 #This adjusts the wavelength to whatever value is inserted by the user
 def AdjustWavelength(value):
-    mystring = "WA" + value + '\r\n'
-    ser.write(mystring.encode('ascii'))
-
-    #All of the rest of the code just gets the response back from the laser and prints it
-    #to the terminal to make sure that the command was received correctly
-    out = ''
-    time.sleep(1)
-    while ser.inWaiting() > 0:
-        out += ser.read(1).decode('ascii')
-
-    if out != '':
-        print (">>" + out)
-    else:
-        print ("No Output")
+    ser.write("WA" + value + '\r\n')
 
 
 #This adjusts the power to whatever value is inserted by the user
 def AdjustPower(value):
-    mystring = "LP" + value + '\r\n'
-    ser.write(mystring.encode('ascii'))
-
-    #All of the rest of the code just gets the response back from the laser and prints it
-    #to the terminal to make sure that the command was received correctly
-    out = ''
-    time.sleep(1)
-    while ser.inWaiting() > 0:
-        out += ser.read(1).decode('ascii')
-
-    if out != '':
-        print (">>" + out)
-    else:
-        print ("No Output")
-
+    ser.write("LP" + value + '\r\n')
 
 
 
@@ -90,7 +38,7 @@ def getArray(begin, end, size):
     start = float(begin)
     finish = float(end)
     stepsize = float(size)
-    x = (2*(finish - start + 1)/stepsize)
+    x = (2*(finish - start)/stepsize) + 2
     return np.zeros((int(x),2), dtype = float)
 
 
@@ -109,8 +57,8 @@ def SweepWavelength(begin, end, size):
     mystring = "WA" + str(start) + '\r\n'
 
     #This increases the wavelength by .01 nm until it reaches the value of 'end'
-    while start < float(end) + stepsize:
-        ser.write(mystring.encode('ascii'))
+    while start < float(end):
+        ser.write(mystring)
         daqArray[arrayindex, 0] = start
         daqArray[arrayindex, 1] = daq.getAverage()
         start  = start + stepsize #This is the step size
@@ -121,7 +69,7 @@ def SweepWavelength(begin, end, size):
     #wavelength = 1580.00
     mystring = "WA" + str(finish) + '\r\n'
     while finish > float(begin):
-        ser.write(mystring.encode('ascii'))
+        ser.write(mystring)
         daqArray[arrayindex, 0] = finish
         daqArray[arrayindex, 1] = daq.getAverage()
         arrayindex = arrayindex + 1

@@ -5,8 +5,8 @@
 #Note: Only works with Python 3
 
 
-from tkinter import *
-from functions import Laserfunctions as lf
+from Tkinter import *
+from functions import LaserfunctionsPy2 as lf
 
 
 
@@ -29,7 +29,7 @@ class Window(Frame):
         Exit = Button(self, text = "Exit", command = lf.Exit)
         Wavelength = Button(self, text = "Adjust Wavelength", command = lambda: [lf.AdjustWavelength(WE.get()), WE.delete(0,END)])
         Power = Button(self, text = "Adjust Power (mW)", command = lambda: [lf.AdjustPower(PE.get()), PE.delete(0,END)])
-        Sweep = Button(self, text = "Sweep Wavelength", command = lambda: [lf.SweepWavelength(Begin.get(), End.get(), Size.get()), Begin.delete(0,END), End.delete(0,END), Size.delete(0,END)])
+        Sweep = Button(self, text = "Sweep Wavelength", command = lambda: [lf.SweepWavelength(Begin.get(), End.get(), Size.get())]) # , Begin.delete(0,END), End.delete(0,END), Size.delete(0,END)])
 
         #Creates 'Entries' where inputs can be added and interpreted in the form of strings
         WavelengthEntry = StringVar()
