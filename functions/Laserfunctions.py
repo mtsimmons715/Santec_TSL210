@@ -87,6 +87,16 @@ def daqinfo(begin, end, size):
     print("Hello World!")
     
 
+
+def getArray(begin, end, size):
+    start = float(begin)
+    finish = float(end)
+    stepsize = float(size)
+    x = (2*(finish - start + 1)/stepsize)
+    np.zeros((int(x),2))
+
+
+
 def SweepWavelength(begin, end, size):
     #This function sweeps the wavelenth from a beginning value to an end value and then back to the beginning value
     #The step size in wavelength is .01nm but digitally it can be controlled down to .001nm
@@ -95,11 +105,14 @@ def SweepWavelength(begin, end, size):
     start = float(begin)
     finish = float(end)
     stepsize = float(size)
-    #wavelength = 1530.00
+
+    daqArray = getArray(begin,end,size)
+    
+
     mystring = "WA" + str(start) + '\r\n'
 
     #This increases the wavelength by .01 nm until it reaches the value of 'end'
-    while start < float(end):
+    while start < float(end) + stepsize:
         ser.write(mystring.encode('ascii'))
         start  = start + stepsize #This is the step size
         mystring = "WA" + str(start) + '\r\n'
