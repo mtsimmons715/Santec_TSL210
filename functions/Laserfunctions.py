@@ -1,7 +1,7 @@
 from tkinter import *
 import time
 import serial
-import daq.py
+from . import daq
 
 ser = serial.Serial(
     port='COM1',
@@ -83,11 +83,15 @@ def AdjustPower(value):
         print ("No Output")
 
 
+def daqinfo(begin, end, size):
+    print("Hello World!")
+    
 
 def SweepWavelength(begin, end, size):
     #This function sweeps the wavelenth from a beginning value to an end value and then back to the beginning value
     #The step size in wavelength is .01nm but digitally it can be controlled down to .001nm
     #It takes whatever the value the wavelenth was and drops it to the value of 'begin'
+
     start = float(begin)
     finish = float(end)
     stepsize = float(size)

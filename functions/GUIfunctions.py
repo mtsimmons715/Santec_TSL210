@@ -28,8 +28,8 @@ def connect(which="primary", centralize="all"):
     elif which == "secondary":
         serialNumber = serialNumberB
     result = piezoDll.PBC_Open(serialNumber)
-    if result != 0: print "error connecting: " + str(result)
-    else: print "Successfully Connected"
+    if result != 0: print ("error connecting: " + str(result))
+    else: print ("Successfully Connected")
     closeLoop(1)
     closeLoop(2)
     closeLoop(3)
@@ -146,9 +146,9 @@ def getPosition():
 def setPosition(position_um, channel):
     if position_um < 0:
         position_um = 0
-        print "error: position < 0"
+        print ("error: position < 0")
     elif position_um > 20:
-        print "Out of bounds error: position > 20"
+        print ("Out of bounds error: position > 20")
     inputShort = calculateDistanceShort(position_um, channel)
     if inputShort > hundredPercent: inputShort = hundredPercent
     inputShort = ct.c_short(inputShort)
