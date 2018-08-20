@@ -1,8 +1,11 @@
 
 import time
 import serial
-from . import daq
+#from daqfunctions import daq as dq
 import numpy as np
+import ctypes as ct
+import os
+
 
 ser = serial.Serial(
     port='COM1',
@@ -59,10 +62,10 @@ def SweepWavelength(begin, end, size):
     #This increases the wavelength by .01 nm until it reaches the value of 'end'
     while start < float(end):
         ser.write(mystring)
-        daqArray[arrayindex, 0] = start
-        daqArray[arrayindex, 1] = daq.getAverage()
+        #daqArray[arrayindex, 0] = start
+        #daqArray[arrayindex, 1] = dq.getAverage()
+        #arrayindex = arrayindex + 1
         start  = start + stepsize #This is the step size
-        arrayindex = arrayindex + 1
         mystring = "WA" + str(start) + '\r\n'
 
     #This then sweeps the wavlength back down to 1530nm by a .01 nm step size as well
@@ -70,13 +73,13 @@ def SweepWavelength(begin, end, size):
     mystring = "WA" + str(finish) + '\r\n'
     while finish > float(begin):
         ser.write(mystring)
-        daqArray[arrayindex, 0] = finish
-        daqArray[arrayindex, 1] = daq.getAverage()
-        arrayindex = arrayindex + 1
+        #daqArray[arrayindex, 0] = finish
+        #daqArray[arrayindex, 1] = dq.getAverage()
+        #arrayindex = arrayindex + 1
         finish  = finish - stepsize #This is the step size
         mystring = "WA" + str(finish) + '\r\n'
 
-    print(daqArray)
+    #print(daqArray)
 
 def Exit():
     ser.close()
